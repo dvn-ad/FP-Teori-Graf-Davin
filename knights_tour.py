@@ -123,7 +123,8 @@ class KnightsTourGUI:
                 
                 move_num = self.board[i][j]
                 font_size = max(8, int(self.cell_size/3))
-                self.canvas.create_text((x1 + x2) // 2, (y1 + y2) // 2, text=str(move_num), font=("Arial", font_size, "bold"))
+                self.canvas.create_text((x1 + x2) // 2, (y1 + y2) // 2, text=str(move_num+1), font=("Arial", 12, "bold"))
+                # self.canvas.create_text((x1 + x2) // 2, (y1 + y2) // 2, text=str(move_num), font=("Arial", 6, "bold"))
                 
                 if (i, j) == moves[0]:
                     self.canvas.create_oval(x1 + 5, y1 + 5, x2 - 5, y2 - 5, outline="green", width=3)
@@ -143,6 +144,7 @@ class KnightsTourGUI:
                 y2 = r2 * self.cell_size + self.cell_size // 2
                 
                 self.canvas.create_line(x1, y1, x2, y2, fill="blue", width=2, arrow=tk.LAST)
+                # self.canvas.create_line(x1, y1, x2, y2, fill="black", width=2, arrow=tk.LAST)
 
         # last move
         last_move = self.n * self.n - 1
@@ -162,14 +164,22 @@ class KnightsTourGUI:
 if __name__ == "__main__":
     n = 8
     kt = KnightsTour(n)
-    start_x, start_y = 0, 0
-    
-    closed_tour = True
+    # input
+    start_x, start_y = int(input("Masukkan posisi awal x (1-8): ")), int(input("Masukkan posisi awal y (1-8): "))
+    start_x -= 1  
+    start_y -= 1  
+    tour_type = input("Pilih tipe tour - open (o) / closed (c): ").strip().lower()
+    if tour_type == 'o':
+        closed_tour = False
+    elif tour_type == 'c':
+        closed_tour = True
+    else:
+        print("Invalid")
     
     if kt.solve(start_x, start_y, closed_tour=closed_tour):
         # kt.print_solution()
         gui = KnightsTourGUI(n, kt.board)
     else:
-        print("No solution found.")
+        print("Solusi tidak ditemukan")
 
 
