@@ -36,9 +36,9 @@ Pilih tipe tour - open (o) / closed (c): c
 
 ### Output
 *   **Open Tour | Posisi Awal (1,1)**
-    ![alt text](image.png)
+    ![alt text](/assets/image.png)
 *   **Closed Tour | Posisi Awal (4,3)**
-    ![alt text](image-1.png)
+    ![alt text](/assets/image-1.png)
 ### Kebutuhan
 *   Python 3.x
 *   Library `tkinter` 
